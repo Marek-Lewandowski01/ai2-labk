@@ -1,1 +1,63 @@
-<p>details works! {{personId}}</p>
+<div class="details-container">
+  <div class="back-button">
+    <a routerLink="/list">← Powrót do listy</a>
+  </div>
+
+  @if (person) {
+    <div class="person-card">
+      <div class="card-header">
+        <h1>{{ person.firstName }} {{ person.lastName }}</h1>
+        @if (person.age) {
+          <div class="age-badge">
+            {{ person.age }} lat
+          </div>
+        }
+      </div>
+
+      <div class="card-body">
+        <div class="info-section">
+          <h2>📋 Informacje osobiste</h2>
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="label">Imię:</span>
+              <span class="value">{{ person.firstName || 'Brak danych' }}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Nazwisko:</span>
+              <span class="value">{{ person.lastName || 'Brak danych' }}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Wiek:</span>
+              <span class="value">{{ person.age || 'Brak danych' }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-section">
+          <h2>📍 Adres</h2>
+          <div class="address-card">
+            <div class="address-line">
+              <span class="icon">🏙️</span>
+              <span>{{ person.address?.city || 'Brak miasta' }}</span>
+            </div>
+            <div class="address-line">
+              <span class="icon">🏠</span>
+              <span>{{ person.address?.street || 'Brak ulicy' }}</span>
+            </div>
+            <div class="address-line">
+              <span class="icon">📮</span>
+              <span>{{ person.address?.postalCode || 'Brak kodu pocztowego' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="error-card">
+      <h2>❌ Nie znaleziono osoby</h2>
+      <p>Osoba o podanym ID nie istnieje w bazie danych.</p>
+      <a routerLink="/list" class="button-primary">Wróć do listy</a>
+    </div>
+  }
+</div>
+
