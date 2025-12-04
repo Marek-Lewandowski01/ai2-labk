@@ -1,1 +1,9 @@
-<p>list works!</p>
+<ul>
+  @for (person of people; track $index) {
+    <li>
+      <a [routerLink]="['/details', $index]">
+        {{person.firstName}} {{person.lastName}} {{$index}}
+      </a>
+    </li>
+  }
+</ul>
