@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-details',
@@ -6,6 +7,13 @@ import { Component } from '@angular/core';
   templateUrl: './details.html',
   styleUrl: './details.css',
 })
-export class Details {
+export class Details implements OnInit {
+  personId?: string;
+  private route = inject(ActivatedRoute);
 
+  ngOnInit() {
+    this.route.params.subscribe((params) => {
+      this.personId = params['id'];
+    });
+  }
 }
