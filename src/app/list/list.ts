@@ -16,4 +16,13 @@ export class List implements OnInit {
   ngOnInit() {
     this.people = this.personLsService.getAll(); // load people from ls on init
   }
+
+  delete(index: number): void {
+    const shouldDelete = confirm('Delete this person?');
+    if (!shouldDelete) {
+      return;
+    }
+    this.personLsService.deletePerson(index);
+    this.people = this.personLsService.getAll();
+  }
 }

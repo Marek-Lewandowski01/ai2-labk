@@ -15,10 +15,13 @@ export class Details implements OnInit {
   private route = inject(ActivatedRoute);
   private personLsService = inject(PersonLs);
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      this.personId = params['id'];
-      this.person = this.personId ? this.personLsService.getPerson(this.personId) : undefined;
+      const idParam = Number(params['id']);
+      this.personId = Number.isNaN(idParam) ? undefined : idParam;
+      this.person = this.personId !== undefined
+        ? this.personLsService.getPerson(this.personId)
+        : undefined;
     });
   }
 }

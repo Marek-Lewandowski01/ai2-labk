@@ -1,9 +1,12 @@
-<ul>
+<ul class="list-unstyled">
   @for (person of people; track $index) {
-    <li>
+    <li class="d-flex align-items-center gap-2 py-1">
       <a [routerLink]="['/details', $index]">
         {{person.firstName}} {{person.lastName}} {{$index}}
       </a>
+      <button class="btn btn-sm btn-outline-danger" type="button" (click)="delete($index)">
+        Delete
+      </button>
     </li>
   }
 </ul>
